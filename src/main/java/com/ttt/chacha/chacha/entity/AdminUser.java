@@ -17,6 +17,6 @@ public class AdminUser {
     private Integer id;
     private String name;
     private String password;
-    private byte state;
+    private String role;
     private byte type;
 }
