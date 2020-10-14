@@ -18,5 +18,4 @@ public class AdminUser {
     private String name;
     private String password;
     private String role;
-    private byte type;
 }

@@ -1,1 +1,23 @@
-
+server:
+  port: 8080
+spring:
+  datasource:
+    name: chacha
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://djj@49.234.81.62:3306@?useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowMultiQueries=true
+    username: djj
+    password: dingjunjie
+  hikari:
+    minimum-idle: 5
+    maximum-pool-size: 15
+    auto-commit: true
+    idle-timeout: 30000
+    pool-name: hikariCP
+    max-lifetime: 30000
+    connection-timeout: 30000
+    connection-test-query: SELECT 1
+#  datasource:
+#    url: jdbc:mysql://yjh@49.234.81.62:3306/chacha?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=true&serverTimezone=GMT%2B8
+#    username: yjh
+#    password: yangjinghai
+#    driver-class-name: com.mysql.cj.jdbc.Driver

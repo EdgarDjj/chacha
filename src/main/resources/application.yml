@@ -7,20 +7,7 @@ spring:
     multipart:
       enabled: true #开启文件上传
       max-file-size: 10MB #限制文件上传大小为10M
-  datasource:
-    url: jdbc:mysql://yjh@49.234.81.62:3306/chacha?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=true&serverTimezone=GMT%2B8
-    username: yjh
-    password: yangjinghai
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 15
-      auto-commit: true
-      idle-timeout: 30000
-      pool-name: hikariCP
-      max-lifetime: 30000
-      connection-timeout: 30000
-      connection-test-query: SELECT 1
+
   jpa:
     database: mysql
   devtools:
@@ -30,7 +17,4 @@ spring:
     cache: false
 
 mybatis:
-  mapper-locations:
-    - classpath:dao/*.xml
-    - classpath*:com/**/mapper/*.xml
-
+  mapper-locations:classpath:mapper/*Mapper.xml

@@ -24,8 +24,12 @@ public class AdminUserServiceImpl implements AdminUserService, UserDetailsServic
     @Override
     public AdminUser selectAdminUserByName(String name)
     {
-        AdminUser user = adminUserDao.selectAdminUserByName(name);
-        return user;
+        return adminUserDao.selectAdminUserByName(name);
+    }
+
+    @Override
+    public List<AdminUser> getList() {
+        return adminUserDao.getList();
     }
 
     @Override
