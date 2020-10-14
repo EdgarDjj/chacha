@@ -1,14 +1,12 @@
 package com.ttt.chacha.chacha.service.impl;
 
-import com.ttt.chacha.chacha.dao.AdminUserDao;
+import com.ttt.chacha.chacha.dao.AdminUserMapper;
 import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.service.AdminUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,17 +17,17 @@ import java.util.List;
 public class AdminUserServiceImpl implements AdminUserService, UserDetailsService
 {
     @Resource
-    AdminUserDao adminUserDao;
+    AdminUserMapper adminUserMapper;
 
     @Override
     public AdminUser selectAdminUserByName(String name)
     {
-        return adminUserDao.selectAdminUserByName(name);
+        return adminUserMapper.selectAdminUserByName(name);
     }
 
     @Override
     public List<AdminUser> getList() {
-        return adminUserDao.getList();
+        return adminUserMapper.getList();
     }
 
     @Override

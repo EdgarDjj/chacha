@@ -6,11 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 
-public interface AdminUserDao
+public interface AdminUserMapper
 {
     AdminUser selectAdminUserByName(String name);
 
     List<AdminUser> getList();
-
-    AdminUser getUserByName(String name);
 }

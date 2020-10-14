@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ttt.chacha.chacha.dao.AdminUserDao">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ttt.chacha.chacha.dao.AdminUserMapper">
 
     <resultMap id="AdminUser_List" type="com.ttt.chacha.chacha.entity.AdminUser">
         <id property="id" column="id" javaType="Integer"/>
@@ -16,6 +16,7 @@
     <select id="selectAdminUserByName" resultType="com.ttt.chacha.chacha.entity.AdminUser">
         select id,name,password,role from admin_user where name = #{name}
     </select>
+
     <select id="getList" resultMap="AdminUser_List">
         select
         <include refid="BASE_COLUMN"/>
