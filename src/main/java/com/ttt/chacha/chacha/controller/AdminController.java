@@ -63,8 +63,8 @@ public class AdminController {
     @ApiOperation("用户注册")
     @RequestMapping(value = "/userRegister", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult userRegister(@ResponseBody AdminUser user, BindingResult bindingResult) {
-
+    public CommonResult userRegister(AdminUser user, BindingResult bindingResult) {
+        return null;
     }
 }
 

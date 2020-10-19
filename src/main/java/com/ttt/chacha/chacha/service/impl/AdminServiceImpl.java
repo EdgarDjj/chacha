@@ -27,9 +27,8 @@ import java.util.Random;
 @Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
-    private AdminService adminService;
-    @Autowired
     private RedisService redisService;
+
     @Autowired
     private AdminMapper adminMapper;
 
@@ -69,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<AdminUser> getList() {
-        return
+        return adminMapper.getList();
     }
 
     @Override

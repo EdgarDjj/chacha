@@ -2,6 +2,7 @@ package com.ttt.chacha.chacha.service;
 
 import com.ttt.chacha.chacha.common.api.CommonResult;
 import com.ttt.chacha.chacha.entity.AdminUser;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -27,4 +28,8 @@ public interface AdminService {
      * @return
      */
     List<AdminUser> getList();
+
+    UserDetails loadUserByUsername(String username);
+
+    AdminUser selectAdminUserByName(String username);
 }

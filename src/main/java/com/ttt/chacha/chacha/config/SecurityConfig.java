@@ -1,6 +1,6 @@
 package com.ttt.chacha.chacha.config;
 
-import com.ttt.chacha.chacha.service.impl.AdminUserServiceImpl;
+import com.ttt.chacha.chacha.service.impl.AdminServiceImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Resource
-    AdminUserServiceImpl adminUserServiceImpl;
+    AdminServiceImpl adminServiceImpl;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.userDetailsService(adminUserServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(adminServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
