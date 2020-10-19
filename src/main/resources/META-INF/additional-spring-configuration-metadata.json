@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.hikari.minimum-idle",
+      "type": "java.lang.String",
+      "description": "Description for spring.hikari.minimum-idle."
+    },
+    {
+      "name": "redis.host",
+      "type": "java.lang.String",
+      "description": "Description for redis.host."
+    }
+  ] }

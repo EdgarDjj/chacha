@@ -1,15 +1,21 @@
 package com.ttt.chacha.chacha.common.api;
 
+import lombok.Data;
+
 /**
  * Description:
  * 返回对象
  * @author:edgarding
  * @date:2020/10/14
  **/
+@Data
 public class CommonResult<T> {
     private int code;
     private String message;
     private T data;
+
+    public CommonResult() {
+    }
 
     public CommonResult(int code, String message, T data) {
         this.code = code;
@@ -17,9 +23,6 @@ public class CommonResult<T> {
         this.data = data;
     }
 
-    public CommonResult(T data) {
-        this.data = data;
-    }
 
     /**
      * 成功返回结果
@@ -85,29 +88,4 @@ public class CommonResult<T> {
     public static <T> CommonResult<T> forbidden(T data) {
         return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
     }
-
-    public long getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
 }
