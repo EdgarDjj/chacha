@@ -1,6 +1,9 @@
 package com.ttt.chacha.chacha.service;
 
 import com.ttt.chacha.chacha.common.api.CommonResult;
+import com.ttt.chacha.chacha.entity.AdminUser;
+
+import java.util.List;
 
 /**
  * Description:
@@ -18,4 +21,10 @@ public interface AdminService {
      * 判断验证码和手机号码是否匹配
      */
     CommonResult verifyAuthCode(String telephone, String authCode);
+
+    /**
+     * 获取AdminUser集合
+     * @return
+     */
+    List<AdminUser> getList();
 }

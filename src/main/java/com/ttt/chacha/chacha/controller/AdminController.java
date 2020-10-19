@@ -1,15 +1,16 @@
 package com.ttt.chacha.chacha.controller;
 
 import com.ttt.chacha.chacha.common.api.CommonResult;
+import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.service.AdminService;
-import com.ttt.chacha.chacha.service.AdminUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Description:
@@ -37,6 +38,13 @@ public class AdminController {
         return "login";
     }
 
+    @ApiOperation("获取")
+    @GetMapping("/getList")
+    @ResponseBody
+    public CommonResult<List<AdminUser>> getList() {
+        return CommonResult.success(adminService.getList());
+    }
+
     @ApiOperation("获取验证码")
     @RequestMapping(value = "/getAuthCode", method = RequestMethod.GET)
     @ResponseBody
@@ -55,7 +63,7 @@ public class AdminController {
     @ApiOperation("用户注册")
     @RequestMapping(value = "/userRegister", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult userRegister() {
+    public CommonResult userRegister(@ResponseBody AdminUser user, BindingResult bindingResult) {
 
     }
 }

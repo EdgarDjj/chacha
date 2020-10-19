@@ -2,7 +2,6 @@ package com.ttt.chacha.chacha.service.impl;
 
 import com.ttt.chacha.chacha.dao.AdminUserMapper;
 import com.ttt.chacha.chacha.entity.AdminUser;
-import com.ttt.chacha.chacha.service.AdminUserService;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
