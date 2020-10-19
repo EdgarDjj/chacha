@@ -61,10 +61,15 @@ public class AdminController {
     }
 
     @ApiOperation("用户注册")
-    @RequestMapping(value = "/userRegister", method = RequestMethod.GET)
+    @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult userRegister(AdminUser user, BindingResult bindingResult) {
-        return null;
+    public CommonResult<AdminUser> userRegister(@RequestBody AdminUser adminUserParam) {
+        AdminUser adminUser = adminService.userRegister(adminUserParam);
+        System.out.println(adminUser);
+        if (adminUser == null) {
+            return CommonResult.failed("账号已经注册！");
+        }
+        return CommonResult.success(adminUser);
     }
 }
 

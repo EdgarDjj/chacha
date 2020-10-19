@@ -31,4 +31,6 @@ public interface AdminService {
     List<AdminUser> getList();
 
     AdminUser selectAdminUserByName(String username);
+
+    AdminUser userRegister(AdminUser adminUserParam);
 }

@@ -7,11 +7,15 @@
         <result property="name" column="name" javaType="String"/>
         <result property="password" column="password" javaType="String"/>
         <result property="role" column="role" javaType="String"/>
+        <result property="telephone" column="telephone" javaType="String"/>
     </resultMap>
 
     <sql id="BASE_COLUMN">
-        id,name,password,role
+        id,name,password,role,telephone
     </sql>
+    <insert id="userRegister">
+        insert into admin_user(name, password, role, telephone) values(#{name}, #{password}, #{role}, #{telephone})
+    </insert>
 
     <select id="selectAdminUserByName" resultType="com.ttt.chacha.chacha.entity.AdminUser">
         select id,name,password,role from admin_user where name = #{name}
@@ -21,5 +25,11 @@
         select
         <include refid="BASE_COLUMN"/>
         from admin_user
+    </select>
+
+    <select id="selectUserByNameAndTelephone" resultType="com.ttt.chacha.chacha.entity.AdminUser">
+        select
+        <include refid="BASE_COLUMN"/>
+        from admin_user where name=#{name} and telephone=#{telephone}
     </select>
 </mapper>

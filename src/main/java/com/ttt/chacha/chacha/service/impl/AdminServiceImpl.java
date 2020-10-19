@@ -5,12 +5,15 @@ import com.ttt.chacha.chacha.dao.AdminMapper;
 import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.service.AdminService;
 import com.ttt.chacha.chacha.service.RedisService;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -18,6 +21,9 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static com.ttt.chacha.chacha.common.Constants.AUTH_CODE_EXPIRE_SECONDS;
+import static com.ttt.chacha.chacha.common.Constants.REDIS_KEY_PREFIX_AUTH_CODE;
 
 /**
  * Description:
@@ -29,14 +35,10 @@ import java.util.Random;
 public class AdminServiceImpl implements AdminService,UserDetailsService {
     @Autowired
     private RedisService redisService;
-
-    @Resource
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private AdminMapper adminMapper;
-
-    @Value("${redis.key.prefix.authCode}")
-    private String REDIS_KEY_PREFIX_AUTH_CODE;
-    @Value("${redis.key.expire.authCode}")
-    private Long AUTH_CODE_EXPIRE_SECONDS;
 
     @Override
     public CommonResult generateAuthCode(String telephone) {
@@ -93,6 +95,27 @@ public class AdminServiceImpl implements AdminService,UserDetailsService {
     public AdminUser selectAdminUserByName(String name)
     {
         return adminMapper.selectAdminUserByName(name);
+    }
+
+    @Override
+    public AdminUser userRegister(AdminUser adminUserParam) {
+        // 判断是否已经存在该用户 （手机号 && 用户名）唯一
+        AdminUser user = selectUserByNameAndTelephone(adminUserParam.getName(), adminUserParam.getTelephone());
+        System.out.println(user);
+        if(user != null){
+            return null;
+        } else {
+            AdminUser adminUser = new AdminUser();
+            BeanUtils.copyProperties(adminUserParam, adminUser);
+            // 加密
+            adminUser.setPassword(passwordEncoder.encode(adminUserParam.getPassword()));
+            adminMapper.userRegister(adminUser);
+            return selectUserByNameAndTelephone(adminUserParam.getName(), adminUserParam.getTelephone());
+        }
+    }
+
+    private AdminUser selectUserByNameAndTelephone(String name, String telephone) {
+        return adminMapper.selectUserByNameAndTelephone(name, telephone);
     }
 
 }

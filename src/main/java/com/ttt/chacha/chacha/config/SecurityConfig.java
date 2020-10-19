@@ -1,12 +1,14 @@
 package com.ttt.chacha.chacha.config;
 
 import com.ttt.chacha.chacha.service.impl.AdminServiceImpl;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
 
@@ -20,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception
     {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()//"/"所有角色都可以通過
+                .antMatchers("/", "/admin/userRegister").permitAll()//"/"所有角色都可以通過
                 .antMatchers("/teacher/**").hasAnyRole("teacher")//"/teacher/**"只有角色為teacher才可以通過
                 .antMatchers("/student/**").hasAnyRole("student")
                 .antMatchers("/admin/**").hasAnyRole("admin");
@@ -46,5 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     {
 //        静态资源放行
         web.ignoring().antMatchers("/static/**");
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
