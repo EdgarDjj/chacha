@@ -16,6 +16,11 @@
     <insert id="userRegister">
         insert into admin_user(name, password, role, telephone) values(#{name}, #{password}, #{role}, #{telephone})
     </insert>
+    <update id="userProfile">
+        update admin_user
+        name=#{name}, password=#{password},role=#{role},telephone=#{telephone}
+        where id=#{id}
+    </update>
 
     <select id="selectAdminUserByName" resultType="com.ttt.chacha.chacha.entity.AdminUser">
         select id,name,password,role from admin_user where name = #{name}

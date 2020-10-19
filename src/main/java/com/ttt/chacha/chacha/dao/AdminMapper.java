@@ -23,4 +23,6 @@ public interface AdminMapper {
     List<AdminUser> getList();
 
     AdminUser userRegister(AdminUser adminUserParam);
+
+    void userProfile(AdminUser adminUserParam);
 }

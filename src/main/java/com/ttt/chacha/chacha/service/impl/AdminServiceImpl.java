@@ -114,6 +114,14 @@ public class AdminServiceImpl implements AdminService,UserDetailsService {
         }
     }
 
+    @Override
+    public AdminUser userProfile(AdminUser adminUserParam) {
+        adminUserParam.setPassword(passwordEncoder.encode(adminUserParam.getPassword()));
+        adminMapper.userProfile(adminUserParam);
+        AdminUser user = selectUserByNameAndTelephone(adminUserParam.getName(), adminUserParam.getTelephone());
+        return user;
+    }
+
     private AdminUser selectUserByNameAndTelephone(String name, String telephone) {
         return adminMapper.selectUserByNameAndTelephone(name, telephone);
     }

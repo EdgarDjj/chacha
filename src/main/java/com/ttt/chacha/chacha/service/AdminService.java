@@ -33,4 +33,6 @@ public interface AdminService {
     AdminUser selectAdminUserByName(String username);
 
     AdminUser userRegister(AdminUser adminUserParam);
+
+    AdminUser userProfile(AdminUser adminUserParam);
 }
