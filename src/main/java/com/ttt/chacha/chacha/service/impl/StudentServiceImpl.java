@@ -47,6 +47,15 @@ public class StudentServiceImpl implements StudentService {
         return studentMapper.updateStudentInfo(smsStudent);
     }
 
+    @Override
+    public boolean deleteStudentInfo(SmsStudent smsStudent) {
+        if (selectStudentByUserId(smsStudent.getUserId()) == null) {
+            return false;
+        }
+        studentMapper.deleteStudentInfo(smsStudent.getUserId());
+        return true;
+    }
+
 
     private SmsStudent selectStudentByIdentityNumber(String identityNumber) {
         return studentMapper.selectStudentByIdentityNumber(identityNumber);

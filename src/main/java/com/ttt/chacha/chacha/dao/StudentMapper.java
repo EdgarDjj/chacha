@@ -20,4 +20,6 @@ public interface StudentMapper {
     List<SmsStudent> getStudentInfoList();
 
     boolean updateStudentInfo(SmsStudent smsStudent);
+
+    void deleteStudentInfo(Integer userId);
 }

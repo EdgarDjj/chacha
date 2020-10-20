@@ -25,6 +25,10 @@
         name=#{name},age=#{age},address=#{address},state=#{state},during_school_time=#{duringSchoolTime},identity_number=#{identityNumber}
         where user_id=#{userId}
     </update>
+    <delete id="deleteStudentInfo">
+        delete from sms_student
+        where user_id=#{userId}
+    </delete>
 
     <select id="selectStudentByIdentityNumber" resultMap="Student_List">
         select

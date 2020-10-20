@@ -18,4 +18,6 @@ public interface StudentService {
     List<SmsStudent> getStudentInfoList(Integer pageNum, Integer pageSize);
 
     boolean updateStudentInfo(SmsStudent smsStudent);
+
+    boolean deleteStudentInfo(SmsStudent smsStudent);
 }

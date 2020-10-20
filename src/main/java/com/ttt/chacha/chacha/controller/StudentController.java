@@ -5,6 +5,7 @@ import com.ttt.chacha.chacha.common.api.CommonResult;
 import com.ttt.chacha.chacha.controller.api.StudentControllerApi;
 import com.ttt.chacha.chacha.entity.SmsStudent;
 import com.ttt.chacha.chacha.service.StudentService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 /**
  * Description:
- *
+ * 学生信息
  * @author:edgarding
  * @date:2020/10/20
  **/
@@ -26,7 +27,7 @@ public class StudentController implements StudentControllerApi {
 
     @Override
     @GetMapping("/getStudent")
-    public CommonResult<SmsStudent> getStudentInfo(Integer userId) {
+    public CommonResult<SmsStudent> getStudentInfo(@Param("userId") Integer userId) {
         SmsStudent student = studentService.selectStudentByUserId(userId);
         if (student == null) {
             return CommonResult.failed("查询失败！");
@@ -60,8 +61,19 @@ public class StudentController implements StudentControllerApi {
     @Override
     @PostMapping("/updateStudentInfo")
     @ResponseBody
-    public CommonResult updateStudentInfo(SmsStudent smsStudent) {
+    public CommonResult updateStudentInfo(@RequestBody SmsStudent smsStudent) {
         studentService.updateStudentInfo(smsStudent);
         return CommonResult.success("修改成功！");
+    }
+
+    @Override
+    @PostMapping("/deleteStudentInfo")
+    @ResponseBody
+    public CommonResult deleteStudentInfo(@RequestBody SmsStudent smsStudent) {
+        boolean isDeleted = studentService.deleteStudentInfo(smsStudent);
+        if (!isDeleted) {
+            return CommonResult.failed("该学生已经不存在了！");
+        }
+        return CommonResult.success("删除成功！");
     }
 }

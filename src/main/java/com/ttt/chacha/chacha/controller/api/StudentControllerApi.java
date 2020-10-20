@@ -25,4 +25,7 @@ public interface StudentControllerApi {
 
     @ApiOperation("学生信息更改")
     CommonResult updateStudentInfo(SmsStudent smsStudent);
+
+    @ApiOperation("学生信息删除")
+    CommonResult deleteStudentInfo(SmsStudent smsStudent);
 }
