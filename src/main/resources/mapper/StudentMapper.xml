@@ -8,7 +8,7 @@
         <result property="age" column="age" javaType="Integer"/>
         <result property="address" column="address" javaType="String"/>
         <result property="state" column="state" javaType="Byte"/>
-        <result property="duringSchoolTime" column="during_school_time" javaType="Timestamp"/>
+        <result property="duringSchoolTime" column="during_school_time" javaType="String"/>
         <result property="identityNumber" column="identity_number" javaType="String"/>
     </resultMap>
 

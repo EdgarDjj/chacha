@@ -7,10 +7,7 @@ import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.entity.SmsStudent;
 import com.ttt.chacha.chacha.service.StudentService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,7 +26,7 @@ public class StudentController implements StudentControllerApi {
     StudentService studentService;
 
     @Override
-    @RequestMapping("/getStudent")
+    @GetMapping("/getStudent")
     public CommonResult<SmsStudent> getStudentInfo(Integer id) {
         SmsStudent student = studentService.selectStudentById(id);
         if (student == null) {
@@ -39,7 +36,7 @@ public class StudentController implements StudentControllerApi {
     }
 
     @Override
-    @RequestMapping("/insertStudentInfo")
+    @PostMapping("/insertStudentInfo")
     @ResponseBody
     public CommonResult insertStudentInfo(@RequestBody SmsStudent smsStudent) {
         boolean isSuccess = studentService.insertStudentInfo(smsStudent);
@@ -50,7 +47,7 @@ public class StudentController implements StudentControllerApi {
     }
 
     @Override
-    @RequestMapping("/getStudentInfoList")
+    @PostMapping("/getStudentInfoList")
     @ResponseBody
     public CommonResult<CommonPage<SmsStudent>> getStudentInfoList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
@@ -62,6 +59,8 @@ public class StudentController implements StudentControllerApi {
     }
 
     @Override
+    @PostMapping("/updateStudentInfo")
+    @ResponseBody
     public CommonResult updateStudentInfo(SmsStudent smsStudent) {
         studentService.updateStudentInfo(smsStudent);
         return CommonResult.success("修改成功！");

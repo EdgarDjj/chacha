@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -21,6 +22,6 @@ public class SmsStudent {
     private Integer age;
     private String address;
     private Byte state;
-    private Timestamp duringSchoolTime;
+    private String duringSchoolTime;
     private String identityNumber;
 }
