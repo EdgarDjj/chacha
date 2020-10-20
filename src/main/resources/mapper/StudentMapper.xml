@@ -15,10 +15,32 @@
     <sql id="BASE_COLUMN">
         id,name,age,address,state,during_school_time,identity_number
     </sql>
+    <insert id="insertStudentInfo">
+        insert into sms_student(name, age, address, state, during_school_time, identity_number)
+        values(#{name}, #{age}, #{address}, #{state}, #{duringSchoolTime}, #{identityNumber})
+    </insert>
+    <update id="updateStudentInfo">
+        update from sms_student
+        name=#{name},age=#{age},address=#{address},state=#{state},during_school_time=#{duringSchoolTime},identity_number=#{identityNumber}
+        where id=#{id}
+    </update>
 
-    <select id="selectStudentByName" resultMap="Student_List">
+    <select id="selectStudentByIdentityNumber" resultMap="Student_List">
         select
         <include refid="BASE_COLUMN"/>
-        from
+        from sms_student
+        where identity_number=#{identityNumber}
+    </select>
+
+    <select id="selectStudentById" resultMap="Student_List">
+        select
+        <include refid="BASE_COLUMN"></include>
+        from sms_student
+        where id=#{id}
+    </select>
+    <select id="getStudentInfoList" resultMap="Student_List">
+        select
+        <include refid="BASE_COLUMN"></include>
+        from sms_student
     </select>
 </mapper>

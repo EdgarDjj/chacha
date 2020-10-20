@@ -2,6 +2,8 @@ package com.ttt.chacha.chacha.service;
 
 import com.ttt.chacha.chacha.entity.SmsStudent;
 
+import java.util.List;
+
 /**
  * Description:
  *
@@ -9,5 +11,11 @@ import com.ttt.chacha.chacha.entity.SmsStudent;
  * @date:2020/10/20
  **/
 public interface StudentService {
-    SmsStudent insertStudentInfo(SmsStudent smsStudent);
+    boolean insertStudentInfo(SmsStudent smsStudent);
+
+    SmsStudent selectStudentById(Integer id);
+
+    List<SmsStudent> getStudentInfoList(Integer pageNum, Integer pageSize);
+
+    boolean updateStudentInfo(SmsStudent smsStudent);
 }

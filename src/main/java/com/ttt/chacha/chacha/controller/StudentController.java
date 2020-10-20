@@ -1,5 +1,6 @@
 package com.ttt.chacha.chacha.controller;
 
+import com.ttt.chacha.chacha.common.api.CommonPage;
 import com.ttt.chacha.chacha.common.api.CommonResult;
 import com.ttt.chacha.chacha.controller.api.StudentControllerApi;
 import com.ttt.chacha.chacha.entity.AdminUser;
@@ -8,9 +9,11 @@ import com.ttt.chacha.chacha.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Description:
@@ -26,18 +29,41 @@ public class StudentController implements StudentControllerApi {
     StudentService studentService;
 
     @Override
-    public CommonResult<SmsStudent> getStudentInfo(AdminUser user) {
-
+    @RequestMapping("/getStudent")
+    public CommonResult<SmsStudent> getStudentInfo(Integer id) {
+        SmsStudent student = studentService.selectStudentById(id);
+        if (student == null) {
+            return CommonResult.failed("查询失败！");
+        }
+        return CommonResult.success(student);
     }
 
     @Override
     @RequestMapping("/insertStudentInfo")
     @ResponseBody
-    public CommonResult<SmsStudent> insertStudentInfo(@RequestBody SmsStudent smsStudent) {
-        SmsStudent student = studentService.insertStudentInfo(smsStudent);
-        if(student == null) {
+    public CommonResult insertStudentInfo(@RequestBody SmsStudent smsStudent) {
+        boolean isSuccess = studentService.insertStudentInfo(smsStudent);
+        if(!isSuccess) {
             return CommonResult.failed("插入学生信息失败，已存在！");
         }
-        return CommonResult.success(student);
+        return CommonResult.success("插入成功");
+    }
+
+    @Override
+    @RequestMapping("/getStudentInfoList")
+    @ResponseBody
+    public CommonResult<CommonPage<SmsStudent>> getStudentInfoList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
+        List<SmsStudent> list = studentService.getStudentInfoList(pageNum, pageSize);
+        if (list.isEmpty()) {
+            return CommonResult.failed("没有数据！");
+        }
+        return CommonResult.success(CommonPage.restPage(list));
+    }
+
+    @Override
+    public CommonResult updateStudentInfo(SmsStudent smsStudent) {
+        studentService.updateStudentInfo(smsStudent);
+        return CommonResult.success("修改成功！");
     }
 }
