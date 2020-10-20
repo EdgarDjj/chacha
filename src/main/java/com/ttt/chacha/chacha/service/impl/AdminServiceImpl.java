@@ -77,8 +77,7 @@ public class AdminServiceImpl implements AdminService,UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        System.out.println(username);
-        if(username == null || username == ""){
+        if(username == null || "".equals(username)){
             throw new UsernameNotFoundException("请输入用户名!");
         }
         List<SimpleGrantedAuthority> list = new ArrayList<>();
@@ -86,7 +85,6 @@ public class AdminServiceImpl implements AdminService,UserDetailsService {
         for(String s : user.getRole().split(" ")){
             s = "ROLE_" + s;
             list.add(new SimpleGrantedAuthority(s));        //由于不可能是空的(数据库中必须字段)
-            System.out.println(s);
         }
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), list);
     }

@@ -4,10 +4,7 @@ import com.ttt.chacha.chacha.common.api.CommonResult;
 import com.ttt.chacha.chacha.controller.api.AdminControllerApi;
 import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.service.AdminService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,17 +24,15 @@ public class AdminController implements AdminControllerApi {
     AdminService adminService;
 
     @Override
-    @GetMapping({"/","/index"})
-    public String index()
-    {
+    @GetMapping({"/", "/index"})
+    public String index() {
         return "index";
     }
 
 
     @Override
     @GetMapping("/toLogin")
-    public String toLogin()
-    {
+    public String toLogin() {
         return "login";
     }
 
@@ -63,7 +58,7 @@ public class AdminController implements AdminControllerApi {
     @ResponseBody
     public CommonResult updatePassword(@RequestParam String telephone,
                                        @RequestParam String authCode) {
-        return adminService.verifyAuthCode(telephone,authCode);
+        return adminService.verifyAuthCode(telephone, authCode);
     }
 
 
@@ -91,5 +86,5 @@ public class AdminController implements AdminControllerApi {
             return CommonResult.failed("修改失败！");
         }
     }
-}
 
+}

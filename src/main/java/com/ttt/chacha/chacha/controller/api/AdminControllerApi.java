@@ -4,6 +4,7 @@ import com.ttt.chacha.chacha.common.api.CommonResult;
 import com.ttt.chacha.chacha.entity.AdminUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import springfox.documentation.service.Tags;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author:edgarding
  * @date:2020/10/19
  **/
-@Api("后台")
+@Api(tags = "后台")
 public interface AdminControllerApi {
 
     String index();
