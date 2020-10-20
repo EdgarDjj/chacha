@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TmsTeacher {
     private Integer id;
+    private Integer userId;
     private String name;
     private Integer age;
     private Byte sex;

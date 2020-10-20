@@ -32,8 +32,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public SmsStudent selectStudentById(Integer id) {
-        return studentMapper.selectStudentById(id);
+    public SmsStudent selectStudentByUserId(Integer userId) {
+        return studentMapper.selectStudentByUserId(userId);
     }
 
     @Override

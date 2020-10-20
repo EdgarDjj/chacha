@@ -3,7 +3,6 @@ package com.ttt.chacha.chacha.controller;
 import com.ttt.chacha.chacha.common.api.CommonPage;
 import com.ttt.chacha.chacha.common.api.CommonResult;
 import com.ttt.chacha.chacha.controller.api.StudentControllerApi;
-import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.entity.SmsStudent;
 import com.ttt.chacha.chacha.service.StudentService;
 import org.springframework.stereotype.Controller;
@@ -27,8 +26,8 @@ public class StudentController implements StudentControllerApi {
 
     @Override
     @GetMapping("/getStudent")
-    public CommonResult<SmsStudent> getStudentInfo(Integer id) {
-        SmsStudent student = studentService.selectStudentById(id);
+    public CommonResult<SmsStudent> getStudentInfo(Integer userId) {
+        SmsStudent student = studentService.selectStudentByUserId(userId);
         if (student == null) {
             return CommonResult.failed("查询失败！");
         }

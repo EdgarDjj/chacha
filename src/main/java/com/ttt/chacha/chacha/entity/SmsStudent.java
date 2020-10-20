@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 /**
  * Description:
  *
@@ -18,6 +15,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class SmsStudent {
     private Integer id;
+    private Integer userId;
     private String name;
     private Integer age;
     private String address;

@@ -15,7 +15,7 @@ public interface StudentMapper {
 
     void insertStudentInfo(SmsStudent smsStudent);
 
-    SmsStudent selectStudentById(Integer id);
+    SmsStudent selectStudentByUserId(Integer userId);
 
     List<SmsStudent> getStudentInfoList();
 

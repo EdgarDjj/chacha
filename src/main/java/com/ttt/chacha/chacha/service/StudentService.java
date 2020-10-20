@@ -13,7 +13,7 @@ import java.util.List;
 public interface StudentService {
     boolean insertStudentInfo(SmsStudent smsStudent);
 
-    SmsStudent selectStudentById(Integer id);
+    SmsStudent selectStudentByUserId(Integer userId);
 
     List<SmsStudent> getStudentInfoList(Integer pageNum, Integer pageSize);
 

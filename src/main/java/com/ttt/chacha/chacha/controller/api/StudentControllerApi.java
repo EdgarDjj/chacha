@@ -2,13 +2,9 @@ package com.ttt.chacha.chacha.controller.api;
 
 import com.ttt.chacha.chacha.common.api.CommonPage;
 import com.ttt.chacha.chacha.common.api.CommonResult;
-import com.ttt.chacha.chacha.entity.AdminUser;
 import com.ttt.chacha.chacha.entity.SmsStudent;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 /**
  * Description:
@@ -19,7 +15,7 @@ import java.util.List;
 @Api(tags = "学生系统")
 public interface StudentControllerApi {
     @ApiOperation("学生信息查询")
-    CommonResult<SmsStudent> getStudentInfo(Integer id);
+    CommonResult<SmsStudent> getStudentInfo(Integer userId);
 
     @ApiOperation("学生信息插入")
     CommonResult insertStudentInfo(SmsStudent smsStudent);

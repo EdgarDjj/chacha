@@ -4,6 +4,7 @@
 
     <resultMap id="Student_List" type="com.ttt.chacha.chacha.entity.SmsStudent">
         <id property="id" column="id" javaType="Integer"/>
+        <result property="userId" column="user_id" javaType="Integer"/>
         <result property="name" column="name" javaType="String"/>
         <result property="age" column="age" javaType="Integer"/>
         <result property="address" column="address" javaType="String"/>
@@ -13,16 +14,16 @@
     </resultMap>
 
     <sql id="BASE_COLUMN">
-        id,name,age,address,state,during_school_time,identity_number
+        id,user_id,name,age,address,state,during_school_time,identity_number
     </sql>
     <insert id="insertStudentInfo">
         insert into sms_student(name, age, address, state, during_school_time, identity_number)
-        values(#{name}, #{age}, #{address}, #{state}, #{duringSchoolTime}, #{identityNumber})
+        values(#{userId}, #{name}, #{age}, #{address}, #{state}, #{duringSchoolTime}, #{identityNumber})
     </insert>
     <update id="updateStudentInfo">
         update from sms_student
         name=#{name},age=#{age},address=#{address},state=#{state},during_school_time=#{duringSchoolTime},identity_number=#{identityNumber}
-        where id=#{id}
+        where user_id=#{userId}
     </update>
 
     <select id="selectStudentByIdentityNumber" resultMap="Student_List">
@@ -32,11 +33,11 @@
         where identity_number=#{identityNumber}
     </select>
 
-    <select id="selectStudentById" resultMap="Student_List">
+    <select id="selectStudentByUserId" resultMap="Student_List">
         select
         <include refid="BASE_COLUMN"></include>
         from sms_student
-        where id=#{id}
+        where user_id=#{userId}
     </select>
     <select id="getStudentInfoList" resultMap="Student_List">
         select
