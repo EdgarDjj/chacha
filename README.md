@@ -42,17 +42,4 @@ categories:
 * sex字段（性别）tinyint
   * 0=男，1=女
 
-### 学生模块
-
-
-
-### 教师模块
-
-
-
-### 后台管理模块
-
-
-
-### Spring security
     
