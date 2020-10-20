@@ -3,12 +3,54 @@
 <mapper namespace="com.ttt.chacha.chacha.dao.TeacherMapper">
 
     <sql id="BASE_COLUMN">
-        id,name,age,sex,level,phone,address,state
+        id,name,age,sex,level,phone,address,state,user_id
     </sql>
+
+    <insert id="addTeacher">
+        insert into tms_teacher(name,age,sex,level,phone,address,state,user_id)
+        values (#{name},#{age},#{sex},#{level},#{phone},#{address},#{state},#{userId})
+    </insert>
+
+    <update id="updateTeacher" parameterType="com.ttt.chacha.chacha.entity.TmsTeacher">
+        update tms_teacher
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="state != null">
+                state = #{state}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+    <delete id="deleteTeacherById">
+        delete from tms_teacher where id = #{id}
+    </delete>
 
     <select id="getTeacherList" resultType="com.ttt.chacha.chacha.entity.TmsTeacher">
         select
         <include refid="BASE_COLUMN"></include>
         from tms_teacher
+    </select>
+    <select id="selectTeacherByUserId" resultType="com.ttt.chacha.chacha.entity.TmsTeacher">
+        select
+        <include refid="BASE_COLUMN"></include>
+        from tms_teacher
+        where user_id = #{userId}
     </select>
 </mapper>

@@ -2,29 +2,23 @@ package com.ttt.chacha.chacha.controller;
 
 import com.ttt.chacha.chacha.common.api.CommonPage;
 import com.ttt.chacha.chacha.common.api.CommonResult;
-import com.ttt.chacha.chacha.entity.AdminUser;
+import com.ttt.chacha.chacha.controller.api.TeacherControllerApi;
 import com.ttt.chacha.chacha.entity.TmsTeacher;
 import com.ttt.chacha.chacha.service.TeacherService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@Api(tags = "教师管理")
 @RequestMapping("/teacher")
-public class TeacherController
+public class TeacherController implements TeacherControllerApi
 {
     @Resource
-    TeacherService teacherService;
+    private TeacherService teacherService;
 
-    @ApiOperation("获取教师列表")
+    @Override
     @GetMapping("/getTeacherList")
     @ResponseBody
     public CommonResult<CommonPage<TmsTeacher>> getTeacherList( @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
@@ -34,11 +28,54 @@ public class TeacherController
         return CommonResult.success(CommonPage.restPage(list));
     }
 
-    @ApiOperation("根据id获取教师")
-    @GetMapping("/getTeacherById")
+
+    @Override
+    @PostMapping("/updateTeacher")
     @ResponseBody
-    public CommonResult<TmsTeacher> getTeacherById(int id)
+    public CommonResult updateTeacher(@RequestBody TmsTeacher tmsTeacher)
     {
-        return null;
+        int flag = teacherService.updateTeacher(tmsTeacher);
+        System.out.println(flag);
+        if (flag > 0)
+            return CommonResult.success(flag, "教师修改成功");
+        else
+            return CommonResult.failed();
     }
+
+    @Override
+    @GetMapping("/deleteTeacherById")
+    @ResponseBody
+    public CommonResult deleteTeacherById(TmsTeacher tmsTeacher)
+    {
+        int flag = teacherService.deleteTeacherById(tmsTeacher);
+        if (flag > 0)
+            return CommonResult.success(flag,"教师删除成功");
+        else
+            return CommonResult.failed();
+    }
+
+    @Override
+    @PostMapping
+    @ResponseBody
+    public CommonResult addTeacher(@RequestBody TmsTeacher tmsTeacher)
+    {
+        int flag = teacherService.addTeacher(tmsTeacher);
+        if (flag > 0)
+            return CommonResult.success(flag,"教师添加成功");
+        else
+            return CommonResult.failed();
+    }
+
+    @Override
+    @PostMapping("/selectTeacherByUserId")
+    @ResponseBody
+    public CommonResult<TmsTeacher> selectTeacherByUserId(@RequestBody TmsTeacher tmsTeacher)
+    {
+        TmsTeacher teacher = teacherService.selectTeacherByUserId(tmsTeacher);
+        if (teacher != null)
+        return CommonResult.success(teacher,"获取教师对象成功");
+        else
+            return CommonResult.failed("教室查询失败");
+    }
+
 }
