@@ -67,7 +67,6 @@ public class AdminController implements AdminControllerApi {
     @ResponseBody
     public CommonResult<AdminUser> userRegister(@RequestBody AdminUser adminUserParam) {
         AdminUser adminUser = adminService.userRegister(adminUserParam);
-        System.out.println(adminUser);
         if (adminUser == null) {
             return CommonResult.failed("账号已经注册！");
         }

@@ -1,5 +1,9 @@
 package com.ttt.chacha.chacha.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.Timestamp;
 
 /**
@@ -8,6 +12,9 @@ import java.sql.Timestamp;
  * @author:edgarding
  * @date:2020/10/13
  **/
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SmsStudent {
     private Integer id;
     private String name;

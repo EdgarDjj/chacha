@@ -12,11 +12,12 @@ import io.swagger.annotations.ApiOperation;
  * @author:edgarding
  * @date:2020/10/20
  **/
-@Api("学生系统")
+@Api(tags = "学生系统")
 public interface StudentControllerApi {
     @ApiOperation("学生信息查询")
     CommonResult<SmsStudent> getStudentInfo(AdminUser user);
 
-
+    @ApiOperation("学生信息插入")
+    CommonResult<SmsStudent> insertStudentInfo(SmsStudent smsStudent);
 
 }
