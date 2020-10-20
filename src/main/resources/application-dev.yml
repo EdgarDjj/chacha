@@ -28,8 +28,3 @@ spring:
         max-idle: 8 # 连接池中的最大空闲连接
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
-#  datasource:
-#    url: jdbc:mysql://yjh@49.234.81.62:3306/chacha?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=true&serverTimezone=GMT%2B8
-#    username: yjh
-#    password: yangjinghai
-#    driver-class-name: com.mysql.cj.jdbc.Driver

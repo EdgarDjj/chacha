@@ -1,12 +1,10 @@
 package com.ttt.chacha.chacha.service;
 
 /**
- * Description:
- * redis操作Service
- * 对象和数组都以json存储
- * @author:edgarding
- * @date:2020/10/19
- **/
+ * redis操作Service,
+ * 对象和数组都以json形式进行存储
+ * Created by macro on 2018/8/7.
+ */
 public interface RedisService {
     /**
      * 存储数据
@@ -35,4 +33,3 @@ public interface RedisService {
     Long increment(String key, long delta);
 
 }
-

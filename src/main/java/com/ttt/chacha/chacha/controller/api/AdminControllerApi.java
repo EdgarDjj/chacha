@@ -13,7 +13,7 @@ import java.util.List;
  * @author:edgarding
  * @date:2020/10/19
  **/
-@Api("后台")
+@Api(tags = "后台")
 public interface AdminControllerApi {
 
     String index();
